@@ -1,0 +1,31 @@
+{
+
+  "import": ["file1", "file3", "file4", "..."],
+
+  "__FINDERS__": [
+
+    {
+      "elementID": "_SEARCH_INPUT_",
+      "locator": "#lst-ib",
+      "name": "Google search input"
+    },
+
+    {
+      "elementID": "_SEARCH_BTN_",
+      "locator": "input[type=\"submit\"]:nth-child(1)",
+      "name": "Google search button"
+    },
+
+    {
+      "elementID": "_FEEL_LUCKY_BTN",
+      "locator": "input[type=\"submit\"]:nth-child(2)",
+      "name": "Google I'm feeling lucky button"
+    },
+
+    {
+      "elementID": "_LOGIN_BTN_",
+      "locator": "#gb_70",
+      "name": "Google login button"
+    }
+  ]
+}
