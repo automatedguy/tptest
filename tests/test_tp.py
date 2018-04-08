@@ -15,8 +15,8 @@ class Exercises(BaseTest):
 
     def test_exercise_one(self):
         self.logger.info(EXERCISE_ONE)
-        self.logger.info('Looking for element : ' + self.element_id)
-        self.base_page.find_element(self.element_id)
+        element = self.base_page.find_element(self.element_id)
+        self.assertIsNotNone(element)
 
     def test_exercise_two(self):
         self.logger.info(EXERCISE_TWO)

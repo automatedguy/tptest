@@ -19,6 +19,7 @@ OPENING_JSON_FILE = 'Opening Element JSON file'
 CURRENT_JSON_CONTENT = 'Current JSON file content'
 ADD_ELEMENT = 'Adding Element'
 WAITING_FOR = 'Waiting for'
+LOOKING_FOR = 'Looking for element'
 
 ELEMENT_FOUND = 'Element Found!'
 ELEMENT_NOT_FOUND = 'Element not found.'

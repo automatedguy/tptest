@@ -18,6 +18,7 @@ class BasePage(object):
         self.driver = driver
 
     def find_element(self, element_name):
+        self.logger.info(LOOKING_FOR + ': [' + element_name + ']')
         self.element_list = JsonReader().get_elements(element_name)
         for element in self.element_list:
             try:
