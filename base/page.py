@@ -27,7 +27,7 @@ class BasePage(object):
                 self.element = WebDriverWait(self.driver, 7).until(
                     EC.presence_of_element_located(locator)
                 )
-                self.logger.info('[' + str(element['name']) + ']' + ELEMENT_FOUND)
+                self.logger.info('[' + str(element['name']) + '] ' + ELEMENT_FOUND)
                 return self.element
             except TimeoutException:
                 self.logger.info(ELEMENT_NOT_FOUND)

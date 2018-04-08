@@ -11,14 +11,14 @@ PATH = lambda p: os.path.abspath(
 
 BASE_URL = 'https://www.google.com'
 ELEMENT_A = '_SEARCH_INPUT_'
-ELEMENT_NAME = '_SEARCH_BTN_'
+ELEMENT_ID = '_SEARCH_BTN_'
 
 
 class BaseTest(unittest.TestCase):
 
     base_url = BASE_URL
     element_a = ELEMENT_A
-    element_id = ELEMENT_NAME
+    element_id = ELEMENT_ID
     path = PATH
 
     logging.basicConfig(format='%(asctime)s - %(levelname)s - %(message)s', level=logging.INFO)
