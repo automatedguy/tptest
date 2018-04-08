@@ -8,8 +8,7 @@ from selenium.webdriver.support import expected_conditions as EC
 
 class BasePage(object):
 
-    def __init__(self, driver):
-        self.driver = driver
+    def __init__(self):
         self.logger = logging.getLogger(__name__)
         self.element_list = None
 

@@ -18,5 +18,11 @@
     "elementID": "_FEEL_LUCKY_BTN",
     "locator": "input[type=\"submit\"]:nth-child(2)",
     "name": "Google I'm feeling lucky button"
+  },
+
+  "Element4": {
+    "elementID": "_SEARCH_BTN_",
+    "locator": "Imaginary locator",
+    "name": "Imaginary element"
   }
 }

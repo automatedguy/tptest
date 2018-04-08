@@ -7,7 +7,7 @@ class Exercises(BaseTest):
 
     def setUp(self):
         self.logger.info(STARTING)
-        self.base_page = BasePage(self.driver)
+        self.base_page = BasePage()
 
     def test_exercise_one(self):
         self.logger.info(EXERCISE_ONE)
@@ -17,4 +17,4 @@ class Exercises(BaseTest):
     def test_exercise_two(self):
         self.logger.info(EXERCISE_TWO)
         self.logger.info('Element A is: [' + self.element_a + ']')
-        self.logger.info('ElementID is: [' + self.element_id)
+        self.logger.info('ElementID is: [' + self.element_id + ']')

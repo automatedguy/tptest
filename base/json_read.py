@@ -13,8 +13,9 @@ class JsonReader(object):
 
     def __init__(self):
         self.logger = logging.getLogger(__name__)
-        self.elements = None
+        self.all_elements = None
         self.raw_data = None
+        self.element_list = []
 
     def load_json(self, file_name):
         self.logger.info(OPENING_JSON_FILE + ': [' + file_name + ']')
@@ -27,12 +28,11 @@ class JsonReader(object):
             return elements
 
     def get_elements(self, element_id):
-        
-        self.elements = self.load_json('file1.json')
-        for element in self.elements.items():
+        self.all_elements = self.load_json('file1.json')
+        for element in self.all_elements.items():
             try:
-                if element[1]['elementID'] is element_id:
-                    return element[1]
+                if element[1]['elementID'] == element_id:
+                    self.element_list.append(element[1])
             except TypeError:
                 self.logger.info('Type error catch.')
-        return None
+        return self.element_list
