@@ -17,6 +17,7 @@ EXERCISE_TWO = 'Exercise Two'
 
 OPENING_JSON_FILE = 'Opening Element JSON file'
 CURRENT_JSON_CONTENT = 'Current JSON file content'
+ADD_ELEMENT = 'Adding Element'
 WAITING_FOR = 'Waiting for'
 
 ELEMENT_FOUND = 'Element Found!'

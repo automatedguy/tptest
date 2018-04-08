@@ -1,7 +1,5 @@
 {
 
-  "import": ["file2"],
-
   "Element1": {
     "elementID": "_SEARCH_INPUT_",
     "locator": "#lst-ib",
@@ -24,5 +22,17 @@
     "elementID": "_SEARCH_BTN_",
     "locator": "Imaginary locator",
     "name": "Imaginary element"
+  },
+
+  "Element5": {
+    "elementID": "_GMAIL_LNK_",
+    "locator": "#gbw .gb_Bg > div:nth-child(1) > a",
+    "name": "Google Gmail link"
+  },
+
+  "Element6": {
+    "elementID": "_IMAGES_LNK_",
+    "locator": "#gbw .gb_Bg > div:nth-child(2) > a",
+    "name": "Google Images link"
   }
 }

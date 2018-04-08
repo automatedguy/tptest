@@ -38,24 +38,24 @@ class JsonReader(object):
         for element in self.json_file.items():
             try:
                 if element[1]['elementID'] == element_id:
+                    self.logger.info(ADD_ELEMENT + ' :[' + str(element[1]))
                     self.element_list.append(element[1])
             except TypeError:
                 self.logger.info(TYPE_ERROR)
 
     def iterate_json_two(self, element_id):
-        for element in self.json_file['__FINDERS__'].items():
+        for element in self.json_file['__FINDERS__']:
             try:
                 if element['elementID'] == element_id:
-                    self.element_list.append(element[1])
+                    self.logger.info(ADD_ELEMENT + ' :[' + str(element))
+                    self.element_list.append(element)
             except TypeError:
                 self.logger.info(TYPE_ERROR)
 
     def populate_element_list(self, import_file, element_id):
         self.json_file = self.load_json(import_file)
-        try:
-            self.iterate_json_one(element_id)
-        except TypeError:
-            self.iterate_json_two(element_id)
+        self.iterate_json_one(element_id)
+        self.iterate_json_two(element_id)
 
     def get_elements(self, element_id):
         self.json_file = self.load_json(self._FIRST_FILE_)
