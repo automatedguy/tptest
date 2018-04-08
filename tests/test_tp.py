@@ -5,9 +5,13 @@ from page import BasePage
 
 class Exercises(BaseTest):
 
+    def __init__(self, driver):
+        super(Exercises, self).__init__(driver)
+        self.driver = driver
+
     def setUp(self):
         self.logger.info(STARTING)
-        self.base_page = BasePage()
+        self.base_page = BasePage(self.driver)
 
     def test_exercise_one(self):
         self.logger.info(EXERCISE_ONE)
