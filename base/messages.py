@@ -16,3 +16,4 @@ EXERCISE_ONE = 'Exercise One'
 EXERCISE_TWO = 'Exercise Two'
 
 OPENING_JSON_FILE = 'Opening Element JSON file'
+WAITING_FOR = 'Waiting for'

@@ -57,14 +57,14 @@ class BaseTest(unittest.TestCase):
         self.logger.info(BROWSER_CLOSED)
 
     def setUp(self):
-        self.start_browser()
-        self.maximize_browser()
-        self.open_base_url()
-        # pass
+        # self.start_browser()
+        # self.maximize_browser()
+        # self.open_base_url()
+        pass
 
     def tearDown(self):
-        self.close_browser()
-        # pass
+        # self.close_browser()
+        pass
 
 
 if __name__ == "__main__":
