@@ -17,6 +17,7 @@ class BasePage(object):
         self.element_list = JsonReader().get_elements(element_name)
 
     def find_element(self, element_name):
+        self.get_element_list(element_name)
         for element in self.element_list:
             try:
                 self.logger.info(WAITING_FOR + element_name)
