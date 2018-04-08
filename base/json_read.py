@@ -34,6 +34,11 @@ class JsonReader(object):
     def get_import_files_list(self):
         return self.json_file['import']
 
+    def iterate_imported_list(self, element_id):
+        import_files_list = self.get_import_files_list()
+        for import_file in import_files_list:
+            self.populate_element_list(import_file, element_id)
+
     def iterate_json_one(self, element_id):
         for element in self.json_file.items():
             try:
@@ -42,6 +47,7 @@ class JsonReader(object):
                     self.element_list.append(element[1])
             except TypeError:
                 self.logger.info(TYPE_ERROR)
+        self.iterate_imported_list(element_id)
 
     def iterate_json_two(self, element_id):
         try:
@@ -54,11 +60,7 @@ class JsonReader(object):
                     self.logger.info(TYPE_ERROR)
         except KeyError:
             self.logger.info(KEY_ERROR)
-
-        import_files_list = self.get_import_files_list()
-
-        for import_file in import_files_list:
-            self.populate_element_list(import_file, element_id)
+        self.iterate_imported_list(element_id)
 
     def populate_element_list(self, import_file, element_id):
         self.json_file = self.load_json(import_file)
@@ -68,10 +70,4 @@ class JsonReader(object):
     def get_elements(self, element_id):
         self.json_file = self.load_json(self._FIRST_FILE_)
         self.iterate_json_one(element_id)
-
-        import_files_list = self.get_import_files_list()
-
-        for import_file in import_files_list:
-            self.populate_element_list(import_file, element_id)
-
         return self.element_list

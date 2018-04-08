@@ -10,8 +10,8 @@ PATH = lambda p: os.path.abspath(
 )
 
 BASE_URL = 'https://www.google.com'
-ELEMENT_A = '_SEARCH_INPUT'
-ELEMENT_NAME = '_SEARCH_BTN_'
+ELEMENT_A = '_SEARCH_INPUT_'
+ELEMENT_NAME = '_IMAGES_LNK_'
 
 
 class BaseTest(unittest.TestCase):

@@ -17,7 +17,7 @@
     },
 
     {
-      "elementID": "_FEEL_LUCKY_BTN",
+      "elementID": "_FEEL_LUCKY_BTN_",
       "locator": "input[type=\"submit\"]:nth-child(2)",
       "name": "Google I'm feeling lucky button"
     },

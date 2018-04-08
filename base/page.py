@@ -21,12 +21,12 @@ class BasePage(object):
         self.element_list = JsonReader().get_elements(element_name)
         for element in self.element_list:
             try:
-                self.logger.info(WAITING_FOR + element_name)
+                self.logger.info(WAITING_FOR + ': [' + element_name + ']')
                 locator = (By.CSS_SELECTOR, element['locator'])
                 self.element = WebDriverWait(self.driver, 7).until(
                     EC.presence_of_element_located(locator)
                 )
-                self.logger.info(ELEMENT_FOUND)
+                self.logger.info('[' + str(element['name']) + ']' + ELEMENT_FOUND)
                 return self.element
             except TimeoutException:
                 self.logger.info(ELEMENT_NOT_FOUND)
