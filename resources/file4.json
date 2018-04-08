@@ -1,38 +1,19 @@
 {
 
-  "Element1": {
-    "elementID": "_SEARCH_INPUT_",
-    "locator": "#lst-ib",
-    "name": "Google search input"
-  },
+  "import": [],
 
-  "Element2": {
-    "elementID": "_SEARCH_BTN_",
-    "locator": "input[type=\"submit\"]:nth-child(1)",
-    "name": "Google search button"
-  },
+  "__FINDERS__": [
 
-  "Element3": {
-    "elementID": "_FEEL_LUCKY_BTN",
-    "locator": "input[type=\"submit\"]:nth-child(2)",
-    "name": "Google I'm feeling lucky button"
-  },
+    {
+      "elementID": "_GMAIL_LNK_",
+      "locator": "#gbw .gb_Bg > div:nth-child(1) > a",
+      "name": "Google Gmail link"
+    },
 
-  "Element4": {
-    "elementID": "_SEARCH_BTN_",
-    "locator": "Imaginary locator",
-    "name": "Imaginary element"
-  },
-
-  "Element5": {
-    "elementID": "_GMAIL_LNK_",
-    "locator": "#gbw .gb_Bg > div:nth-child(1) > a",
-    "name": "Google Gmail link"
-  },
-
-  "Element6": {
-    "elementID": "_IMAGES_LNK_",
-    "locator": "#gbw .gb_Bg > div:nth-child(2) > a",
-    "name": "Google Images link"
-  }
+    {
+      "elementID": "_IMAGES_LNK_",
+      "locator": "#gbw .gb_Bg > div:nth-child(2) > a",
+      "name": "Google Images link"
+    }
+  ]
 }

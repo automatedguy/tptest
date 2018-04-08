@@ -27,6 +27,7 @@ class BasePage(object):
                     EC.presence_of_element_located(locator)
                 )
                 self.logger.info(ELEMENT_FOUND)
+                return self.element
             except TimeoutException:
                 self.logger.info(ELEMENT_NOT_FOUND)
         return self.element
