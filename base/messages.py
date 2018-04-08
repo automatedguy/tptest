@@ -16,7 +16,9 @@ EXERCISE_ONE = 'Exercise One'
 EXERCISE_TWO = 'Exercise Two'
 
 OPENING_JSON_FILE = 'Opening Element JSON file'
+CURRENT_JSON_CONTENT = 'Current JSON file content'
 WAITING_FOR = 'Waiting for'
 
 ELEMENT_FOUND = 'Element Found!'
 ELEMENT_NOT_FOUND = 'Element not found.'
+TYPE_ERROR = 'Type error catch.'

@@ -1,6 +1,6 @@
 {
 
-  "import": ["file2", "file3", "file4", "..."],
+  "import": ["file2", "file3"],
 
   "Element1": {
     "elementID": "_SEARCH_INPUT_",

@@ -1,6 +1,6 @@
 {
 
-  "import": ["file1", "file3", "file4", "..."],
+  "import": ["file1", "file3"],
 
   "__FINDERS__": [
 
