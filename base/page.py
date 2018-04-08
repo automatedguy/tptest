@@ -33,11 +33,11 @@ class BasePage(object):
                 self.logger.info(ELEMENT_NOT_FOUND)
         return self.element
 
-    def size(self):
+    def size(self, element):
         pass
 
-    def position(self):
+    def position(self, element):
         pass
 
-    def find_element_near_to(self):
+    def find_element_near_to(self, element_a, element_x):
         pass
