@@ -17,6 +17,8 @@ Project Structure:
 	    - def find_element(self, element_name)
 	    - def find_element_near_to(self, element_a, element_x)
 	- json_read.py: module that deals with Json files
+	    - def load_json(self, file_name)
+	    - def get_elements(self, element_id)
 	- messages.py: string constants for different messages
 
 - resources:
