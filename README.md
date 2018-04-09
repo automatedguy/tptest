@@ -36,5 +36,5 @@ Usage:
 =====
 
 - Input parameters are set in setup.py, example:
-    - ELEMENT_A = '_SEARCH_INPUT_' (Parameter for test_exercise_one)
-    - ELEMENT_ID = '_SEARCH_BTN_' (Additional parameter for test_exercise_two (ELEMENT_ID is also used))
+    - ELEMENT_ID = '_SEARCH_INPUT_' (Parameter for test_exercise_one)
+    - ELEMENT_A = '_SEARCH_BTN_' (Additional parameter for test_exercise_two (ELEMENT_ID is also used))
