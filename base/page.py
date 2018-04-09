@@ -58,7 +58,7 @@ class BasePage(object):
                 self.element = self.driver.find_element(By.CSS_SELECTOR, element['locator'])
                 position = self.position()
                 distance_x = position['x'] * position['y']
-                if abs(distance_a - distance_x) < min_distance:
+                if abs(distance_a - distance_x) > min_distance:
                     self.logger.info('Closest element now is :[' + element['name'] + ']')
                     min_distance = abs(distance_a - distance_x)
                     closest_element = self.element
