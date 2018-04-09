@@ -30,7 +30,7 @@ class BasePage(object):
             try:
                 self.logger.info(WAITING_FOR + ': [' + element_name + ']')
                 locator = (By.CSS_SELECTOR, element['locator'])
-                self.element = WebDriverWait(self.driver, 7).until(
+                self.element = WebDriverWait(self.driver, 2).until(
                     EC.presence_of_element_located(locator)
                 )
                 self.logger.info('[' + str(element['name']) + '] ' + ELEMENT_FOUND)
