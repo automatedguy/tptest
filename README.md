@@ -10,20 +10,20 @@ Project Structure:
 =================
 
 - base:
-	- setup: base test setup class
-	- page: base page class
-	- json_read: module that deals with Json files
-	- messages: string constants for different messages
+	- setup.py: base test setup class
+	- page.py: base page class
+	- json_read.py: module that deals with Json files
+	- messages.py: string constants for different messages
 
 - resources:
     - Json files containing elements definitions:
-        - elementID: identifier name for the element example: (i.e: _SOME_BTN_)
+        - elementID: identifier name for the element (i.e: _SOME_BTN_)
         - locator: locator used to find the actual element on the page (i.e: #locator)
         - name: description for the element (i.e: Google login button)
     - Chrome driver latest version up to date
 
 - tests:
-    - test_tp
+    - test_tp.py
         - test_exercise_one
         - test_exercise_two
 
