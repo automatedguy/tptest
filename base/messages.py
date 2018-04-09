@@ -25,3 +25,8 @@ ELEMENT_FOUND = 'Element Found!'
 ELEMENT_NOT_FOUND = 'Element not found.'
 TYPE_ERROR = 'Type error catch.'
 KEY_ERROR = 'Key error catch.'
+
+ELEMENT_A = 'Element A'
+ELEMENT_X = 'Element X'
+SIZE = ' size '
+POSITION = ' position '

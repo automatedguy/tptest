@@ -20,9 +20,5 @@ class Exercises(BaseTest):
 
     def test_exercise_two(self):
         self.logger.info(EXERCISE_TWO)
-
-        element_a = self.base_page.find_element(self.element_a)
-        self.assertIsNotNone(element_a)
-
-        element_x = self.base_page.find_element(self.element_id)
-        self.assertIsNotNone(element_x)
+        element = self.base_page.find_element_near_to(self.element_a, self.element_id)
+        self.assertIsNotNone(element)

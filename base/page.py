@@ -17,6 +17,12 @@ class BasePage(object):
         self.element = None
         self.driver = driver
 
+    def size(self):
+        return self.element.size
+
+    def position(self):
+        return self.element.location
+
     def find_element(self, element_name):
         self.logger.info(LOOKING_FOR + ': [' + element_name + ']')
         self.element_list = JsonReader().get_elements(element_name)
@@ -33,11 +39,17 @@ class BasePage(object):
                 self.logger.info(ELEMENT_NOT_FOUND)
         return self.element
 
-    def size(self, element):
-        pass
-
-    def position(self, element):
-        pass
-
     def find_element_near_to(self, element_a, element_x):
-        pass
+        self.element = self.find_element(element_a)
+        element_a_size = self.size()
+        element_a_position = self.position()
+        self.logger.info(ELEMENT_A + SIZE + ': [' + str(element_a_size) + ']')
+        self.logger.info(ELEMENT_A + POSITION + ': [' + str(element_a_position) + ']')
+
+        self.element = self.find_element(element_x)
+        element_x_size = self.size()
+        element_x_position = self.position()
+        self.logger.info(ELEMENT_X + SIZE + ': [' + str(element_x_size) + ']')
+        self.logger.info(ELEMENT_X + POSITION + ': [' + str(element_x_position) + ']')
+
+        return self.element
