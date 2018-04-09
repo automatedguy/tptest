@@ -4,7 +4,7 @@ from selenium.webdriver.common.by import By
 
 from json_read import JsonReader
 from messages import *
-from selenium.common.exceptions import TimeoutException
+from selenium.common.exceptions import TimeoutException, NoSuchElementException
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
@@ -21,7 +21,7 @@ class BasePage(object):
         return self.element.size
 
     def position(self):
-        return self.element.location
+        return self.element.location_once_scrolled_into_view
 
     def find_element(self, element_name):
         self.logger.info(LOOKING_FOR + ': [' + element_name + ']')
@@ -46,10 +46,22 @@ class BasePage(object):
         self.logger.info(ELEMENT_A + SIZE + ': [' + str(element_a_size) + ']')
         self.logger.info(ELEMENT_A + POSITION + ': [' + str(element_a_position) + ']')
 
-        self.element = self.find_element(element_x)
-        element_x_size = self.size()
-        element_x_position = self.position()
-        self.logger.info(ELEMENT_X + SIZE + ': [' + str(element_x_size) + ']')
-        self.logger.info(ELEMENT_X + POSITION + ': [' + str(element_x_position) + ']')
+        self.logger.info(LOOKING_FOR + ': [' + element_x + ']')
+        self.element_list = JsonReader().get_elements(element_x)
 
-        return self.element
+        distance_a = element_a_position['x'] * element_a_position['y']
+        max_distance = 0
+        closest_element = None
+
+        for element in self.element_list:
+            try:
+                self.element = self.driver.find_element(By.CSS_SELECTOR, element['locator'])
+                position = self.position()
+                distance_x = position['x'] * position['y']
+                if abs(distance_a - distance_x) > max_distance:
+                    self.logger.info('Closest element now is :[' + element['name'] + ']')
+                    max_distance = abs(distance_a - distance_x)
+                    closest_element = self.element
+            except NoSuchElementException:
+                self.logger.info('Element was not there.')
+        return closest_element
