@@ -50,7 +50,7 @@ class BasePage(object):
         self.element_list = JsonReader().get_elements(element_x)
 
         distance_a = element_a_position['x'] * element_a_position['y']
-        max_distance = 0
+        min_distance = 0
         closest_element = None
 
         for element in self.element_list:
@@ -58,9 +58,9 @@ class BasePage(object):
                 self.element = self.driver.find_element(By.CSS_SELECTOR, element['locator'])
                 position = self.position()
                 distance_x = position['x'] * position['y']
-                if abs(distance_a - distance_x) > max_distance:
+                if abs(distance_a - distance_x) < min_distance:
                     self.logger.info('Closest element now is :[' + element['name'] + ']')
-                    max_distance = abs(distance_a - distance_x)
+                    min_distance = abs(distance_a - distance_x)
                     closest_element = self.element
             except NoSuchElementException:
                 self.logger.info('Element was not there.')
