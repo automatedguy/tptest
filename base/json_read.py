@@ -42,7 +42,7 @@ class JsonReader(object):
             for file in additional_files:
                 import_files_list.append(file)
 
-    def iterate_json_one(self, element_id):
+    def iterate_json_elements(self, element_id):
         for element in self.json_file.items():
             try:
                 if element[1]['elementID'] == element_id:
@@ -51,7 +51,7 @@ class JsonReader(object):
             except TypeError:
                 self.logger.info(TYPE_ERROR)
 
-    def iterate_json_two(self, element_id):
+    def iterate_json_finders(self, element_id):
         try:
             for element in self.json_file['__FINDERS__']:
                 try:
@@ -67,13 +67,13 @@ class JsonReader(object):
         self.json_file = self.load_json(import_file)
         try:
             if self.json_file['Element1'] is not None:
-                self.iterate_json_one(element_id)
+                self.iterate_json_elements(element_id)
         except KeyError:
-            self.iterate_json_two(element_id)
+            self.iterate_json_finders(element_id)
         return self.get_import_files_list()
 
     def get_elements(self, element_id):
         self.json_file = self.load_json(self._FIRST_FILE_)
-        self.iterate_json_one(element_id)
+        self.iterate_json_elements(element_id)
         self.iterate_imported_list(element_id)
         return self.element_list

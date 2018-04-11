@@ -1,0 +1,18 @@
+{
+
+  "import": ["footer_left", "footer_right"],
+
+  "__FINDERS__": [
+
+    {
+      "elementID": "//*[@id=\"gbw\"]//a[text()=\"_ELEMENT_NAME_\"]",
+      "description": "Element found by text"
+    },
+
+    {
+      "elementID": "//*[@id=\"gbwa\"]//a[@title = \"_ELEMENT_NAME_\"]",
+      "description": "Element found by title"
+    }
+
+  ]
+}

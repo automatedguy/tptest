@@ -1,0 +1,12 @@
+{
+
+  "import": [],
+
+  "__FINDERS__": [
+
+    {
+      "elementID": "//*[@id=\"fsr\"]/a[text() = \"_ELEMENT_NAME_\"]",
+      "description": "Element found by text"
+    }
+  ]
+}

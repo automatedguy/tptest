@@ -1,0 +1,19 @@
+{
+
+  "import": [],
+
+  "Publicidad": {
+    "elementID": "//a[text()=\"Publicidad\"]" ,
+    "description": "Publicidad link"
+  },
+
+  "Negocios": {
+    "elementID": "//a[text()=\"Negocios\"]",
+    "description": "Negocios link"
+  },
+
+  "Acerca de": {
+    "elementID": "//a[text()=\"Acerca de\"]",
+    "description": "Acerca de link"
+  }
+}
