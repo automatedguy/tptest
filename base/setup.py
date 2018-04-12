@@ -17,7 +17,8 @@ BASE_URL = 'https://www.google.com'
 # Parameter for: test_exercise_one
 ELEMENT_NAME = 'Gmail'
 # Additional parameter for: test_exercise_two (ELEMENT_ID is also used)
-ELEMENT_A = '_SEARCH_INPUT_'
+ELEMENT_ID_A = '_SEARCH_INPUT_'
+ELEMENT_ID_X = '_SEARCH_INPUT_'
 
 
 class BaseTest(unittest.TestCase):
@@ -25,7 +26,8 @@ class BaseTest(unittest.TestCase):
     base_url = BASE_URL
     element_name = ELEMENT_NAME
 
-    element_a = ELEMENT_A
+    element_id_a = ELEMENT_ID_A
+    element_id_x = ELEMENT_ID_X
     path = PATH
 
     logging.basicConfig(format='%(asctime)s - %(levelname)s - %(message)s', level=logging.INFO)
