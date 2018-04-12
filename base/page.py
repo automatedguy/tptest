@@ -4,18 +4,17 @@ from selenium.webdriver.common.by import By
 
 from json_read import JsonReader
 from messages import *
-from selenium.common.exceptions import TimeoutException, NoSuchElementException
-from selenium.webdriver.support.wait import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
+from selenium.common.exceptions import NoSuchElementException
 
 
 class BasePage(object):
 
     def __init__(self, driver):
-        self.logger = logging.getLogger(__name__)
-        self.element_list = None
-        self.element = None
         self.driver = driver
+        self.logger = logging.getLogger(__name__)
+        self.element_ids_list = []
+        self.web_elements_list = []
+        self.element = None
 
     def size(self):
         return self.element.size
@@ -23,21 +22,26 @@ class BasePage(object):
     def position(self):
         return self.element.location_once_scrolled_into_view
 
+    def get_elements(self, element_id):
+        try:
+            web_element = self.driver.find_element(By.XPATH, element_id)
+            self.logger.info(ELEMENT_IS_THERE)
+            self.web_elements_list.append(web_element)
+        except NoSuchElementException:
+            self.logger.info(ELEMENT_NOT_FOUND)
+        pass
+
     def find_element(self, element_name):
         self.logger.info(LOOKING_FOR + ': [' + element_name + ']')
-        self.element_list = JsonReader().get_elements(element_name)
-        for element in self.element_list:
-            try:
-                self.logger.info(WAITING_FOR + ': [' + element_name + ']')
-                locator = (By.CSS_SELECTOR, element['locator'])
-                self.element = WebDriverWait(self.driver, 2).until(
-                    EC.presence_of_element_located(locator)
-                )
-                self.logger.info('[' + str(element['name']) + '] ' + ELEMENT_FOUND)
-                return self.element
-            except TimeoutException:
-                self.logger.info(ELEMENT_NOT_FOUND)
-        return self.element
+
+        self.element_ids_list = JsonReader().get_element_ids_list(element_name)
+
+        for element_id in self.element_ids_list:
+            self.get_elements(element_id)
+
+        for web_element in self.web_elements_list:
+            if web_element.is_displayed():
+                return web_element
 
     def find_element_near_to(self, element_a, element_x):
         self.element = self.find_element(element_a)
@@ -47,14 +51,14 @@ class BasePage(object):
         self.logger.info(ELEMENT_A + POSITION + ': [' + str(element_a_position) + ']')
 
         self.logger.info(LOOKING_FOR + ': [' + element_x + ']')
-        self.element_list = JsonReader().get_elements(element_x)
+        self.element_ids_list = JsonReader().get_elements(element_x)
 
         distance_a = element_a_position['x'] * element_a_position['y']
         init_min_distance = True
         min_distance = 0
         closest_element = None
 
-        for element in self.element_list:
+        for element in self.element_ids_list:
             try:
                 self.element = self.driver.find_element(By.CSS_SELECTOR, element['locator'])
                 position = self.position()

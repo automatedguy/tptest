@@ -14,7 +14,7 @@ BASE_URL = 'https://www.google.com'
 
 # Tests input parameters:
 # Parameter for: test_exercise_one
-ELEMENT_ID = '_SEARCH_BTN_'
+ELEMENT_NAME = 'Buscar con Google'
 # Additional parameter for: test_exercise_two (ELEMENT_ID is also used)
 ELEMENT_A = '_SEARCH_INPUT_'
 
@@ -22,8 +22,9 @@ ELEMENT_A = '_SEARCH_INPUT_'
 class BaseTest(unittest.TestCase):
 
     base_url = BASE_URL
+    element_name = ELEMENT_NAME
+
     element_a = ELEMENT_A
-    element_id = ELEMENT_ID
     path = PATH
 
     logging.basicConfig(format='%(asctime)s - %(levelname)s - %(message)s', level=logging.INFO)

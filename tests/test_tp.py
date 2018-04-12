@@ -15,10 +15,10 @@ class Exercises(BaseTest):
 
     def test_exercise_one(self):
         self.logger.info(EXERCISE_ONE)
-        element = self.base_page.find_element(self.element_id)
+        element = self.base_page.find_element(self.element_name)
         self.assertIsNotNone(element)
 
     def test_exercise_two(self):
         self.logger.info(EXERCISE_TWO)
-        element = self.base_page.find_element_near_to(self.element_a, self.element_id)
+        element = self.base_page.find_element_near_to(self.element_a, self.element_name)
         self.assertIsNotNone(element)

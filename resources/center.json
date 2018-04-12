@@ -15,10 +15,5 @@
   "Me siento con suerte": {
     "elementID": "//input[@value = \"Me siento con suerte \"]",
     "description": "Google I'm feeling lucky button"
-  },
-
-  "Iniciar sesión": {
-    "elementID": "//a[@target = \"_top\" and text()=\"Iniciar sesión\" ]",
-    "description": "Google login button"
   }
 }

@@ -2,6 +2,9 @@ import logging
 import os
 import json
 
+from selenium.common.exceptions import NoSuchElementException
+from selenium.webdriver.common.by import By
+
 from messages import *
 
 PATH = lambda p: os.path.abspath(
@@ -11,7 +14,7 @@ PATH = lambda p: os.path.abspath(
 
 class JsonReader(object):
 
-    _FIRST_FILE_ = 'file1'
+    _FIRST_FILE_ = 'center'
     _JSON_ = '.json'
     _RESOURCES_ = '../resources/'
 
@@ -19,6 +22,7 @@ class JsonReader(object):
         self.logger = logging.getLogger(__name__)
         self.json_file = None
         self.raw_data = None
+        self.element_ids_list = []
         self.element_list = []
 
     def load_json(self, file_name):
@@ -34,46 +38,39 @@ class JsonReader(object):
     def get_import_files_list(self):
         return self.json_file['import']
 
-    def iterate_imported_list(self, element_id):
+    def iterate_imported_list(self, element_name):
         import_files_list = self.get_import_files_list()
         while import_files_list:
-            additional_files = self.populate_element_list(import_files_list[0], element_id)
+            additional_files = self.populate_element_list(import_files_list[0], element_name)
             import_files_list.pop(0)
             for file in additional_files:
                 import_files_list.append(file)
 
-    def iterate_json_elements(self, element_id):
+    def iterate_elements(self, element_name):
         for element in self.json_file.items():
-            try:
-                if element[1]['elementID'] == element_id:
-                    self.logger.info(ADD_ELEMENT + ' :[' + str(element[1]))
-                    self.element_list.append(element[1])
-            except TypeError:
-                self.logger.info(TYPE_ERROR)
+            if element[0] == element_name:
+                self.logger.info(ELEMENT_NAME_FOUND_IN_JSON + ' :[' + str(element[0]) + ']')
+                self.logger.info(ADDING_ELEMENT_ID)
+                self.element_ids_list.append(element[1]['elementID'])
 
-    def iterate_json_finders(self, element_id):
-        try:
-            for element in self.json_file['__FINDERS__']:
-                try:
-                    if element['elementID'] == element_id:
-                        self.logger.info(ADD_ELEMENT + ' :[' + str(element))
-                        self.element_list.append(element)
-                except TypeError:
-                    self.logger.info(TYPE_ERROR)
-        except KeyError:
-            self.logger.info(KEY_ERROR)
+    def iterate_finders(self, element_name):
+        for element in self.json_file['__FINDERS__']:
+            element_finder = str(element['elementID']).replace('_ELEMENT_NAME_', element_name)
+            self.logger.info(ADDING_ELEMENT_ID_FINDER + ' :[' + element_finder + ']')
+            self.element_ids_list.append(element_finder)
 
-    def populate_element_list(self, import_file, element_id):
+    def populate_element_list(self, import_file, element_name):
         self.json_file = self.load_json(import_file)
         try:
-            if self.json_file['Element1'] is not None:
-                self.iterate_json_elements(element_id)
+            if self.json_file['__FINDERS__'] is not None:
+                self.iterate_finders(element_name)
         except KeyError:
-            self.iterate_json_finders(element_id)
+            self.iterate_elements(element_name)
         return self.get_import_files_list()
 
-    def get_elements(self, element_id):
+    def get_element_ids_list(self, element_name):
         self.json_file = self.load_json(self._FIRST_FILE_)
-        self.iterate_json_elements(element_id)
-        self.iterate_imported_list(element_id)
-        return self.element_list
+        self.iterate_elements(element_name)
+        self.iterate_imported_list(element_name)
+        return self.element_ids_list
+
