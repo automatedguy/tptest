@@ -44,33 +44,33 @@ class BasePage(object):
             if web_element.is_displayed():
                 return web_element
 
-    def find_element_near_to(self, element_a, element_x):
-        self.element = self.find_element(element_a)
+    def find_element_by_id(self, element_id):
+        return self.driver.find_element(By.XPATH, element_id)
+
+    def find_element_near_to(self, element_id_a, element_id_x):
+        self.element = self.find_element_by_id(element_id_a)
         element_a_size = self.size()
         element_a_position = self.position()
+        self.logger.info(ELEMENT_A_TEXT + ': [' + self.element.text + ']')
         self.logger.info(ELEMENT_A + SIZE + ': [' + str(element_a_size) + ']')
         self.logger.info(ELEMENT_A + POSITION + ': [' + str(element_a_position) + ']')
-
-        self.logger.info(LOOKING_FOR + ': [' + element_x + ']')
-        self.element_ids_list = JsonReader().get_elements(element_x)
 
         distance_a = element_a_position['x'] * element_a_position['y']
         init_min_distance = True
         min_distance = 0
         closest_element = None
 
-        for element in self.element_ids_list:
-            try:
-                self.element = self.driver.find_element(By.CSS_SELECTOR, element['locator'])
-                position = self.position()
-                distance_x = position['x'] * position['y']
-                if init_min_distance:
-                    min_distance = abs(distance_a - distance_x) + 1
-                    init_min_distance = False
-                if abs(distance_a - distance_x) < min_distance:
-                    self.logger.info('Closest element now is :[' + element['name'] + ']')
-                    min_distance = abs(distance_a - distance_x)
-                    closest_element = self.element
-            except NoSuchElementException:
-                self.logger.info('Element was not there.')
+        elements_x_list = self.driver.find_elements(By.XPATH, element_id_x)
+
+        for element in elements_x_list:
+            self.element = element
+            position = self.position()
+            distance_x = position['x'] * position['y']
+            if init_min_distance:
+                min_distance = abs(distance_a - distance_x) + 1
+                init_min_distance = False
+            if abs(distance_a - distance_x) < min_distance:
+                self.logger.info(CLOSEST_ELEMENT + ': [' + element.get_attribute("value") + ']')
+                min_distance = abs(distance_a - distance_x)
+                closest_element = element
         return closest_element

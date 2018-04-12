@@ -15,10 +15,10 @@ BASE_URL = 'https://www.google.com'
 
 # Tests input parameters:
 # Parameter for: test_exercise_one
-ELEMENT_NAME = 'Gmail'
+ELEMENT_NAME = 'Imágenes'
 # Additional parameter for: test_exercise_two (ELEMENT_ID is also used)
-ELEMENT_ID_A = '_SEARCH_INPUT_'
-ELEMENT_ID_X = '_SEARCH_INPUT_'
+ELEMENT_ID_A = '//a[text()="Publicidad"]'
+ELEMENT_ID_X = '//input[@type = "submit"]'
 
 
 class BaseTest(unittest.TestCase):
