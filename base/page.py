@@ -70,7 +70,8 @@ class BasePage(object):
                 min_distance = abs(distance_a - distance_x) + 1
                 init_min_distance = False
             if abs(distance_a - distance_x) < min_distance:
-                self.logger.info(CLOSEST_ELEMENT + ': [' + element.get_attribute("value") + ']')
+                self.logger.info(CLOSEST_ELEMENT + ': [' + str(element.get_attribute("value")) + ']')
+                self.logger.info(CLOSEST_ELEMENT + ': [' + str(element.text) + ']')
                 min_distance = abs(distance_a - distance_x)
                 closest_element = element
         return closest_element

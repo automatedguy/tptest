@@ -13,12 +13,15 @@ PATH = lambda p: os.path.abspath(
 # Just the base URL.
 BASE_URL = 'https://www.google.com'
 
-# Tests input parameters:
+# Tests input parameters
+
 # Parameter for: test_exercise_one
 ELEMENT_NAME = 'Imágenes'
+
 # Additional parameter for: test_exercise_two (ELEMENT_ID is also used)
 ELEMENT_ID_A = '//a[text()="Publicidad"]'
-ELEMENT_ID_X = '//input[@type = "submit"]'
+# ELEMENT_ID_X = '//input[@type = "submit"]'
+ELEMENT_ID_X = '//*[@id="gbw"]/div/div/div[1]/div'
 
 
 class BaseTest(unittest.TestCase):
