@@ -15,13 +15,20 @@ BASE_URL = 'https://www.google.com'
 
 # Tests input parameters
 
-# Parameter for: test_exercise_one
+# Parameter for test_exercise_one (ElementName)
 ELEMENT_NAME = 'Imágenes'
 
-# Additional parameter for: test_exercise_two (ELEMENT_ID is also used)
+# Parameters for test_exercise_two (elementID)
 ELEMENT_ID_A = '//a[text()="Publicidad"]'
+
+# Compare the 2 buttons (Search / Lucky)
 # ELEMENT_ID_X = '//input[@type = "submit"]'
-ELEMENT_ID_X = '//*[@id="gbw"]/div/div/div[1]/div'
+
+# Compare the header elements
+# ELEMENT_ID_X = '//*[@id="gbw"]/div/div/div[1]/div'
+
+# Compare the footer elements
+ELEMENT_ID_X = '//*[@id="fsr"]/a'
 
 
 class BaseTest(unittest.TestCase):
