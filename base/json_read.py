@@ -1,10 +1,6 @@
 import logging
 import os
 import json
-
-from selenium.common.exceptions import NoSuchElementException
-from selenium.webdriver.common.by import By
-
 from messages import *
 
 PATH = lambda p: os.path.abspath(
@@ -47,6 +43,7 @@ class JsonReader(object):
                 import_files_list.append(file)
 
     def iterate_elements(self, element_name):
+        self.logger.info(ITERATING_ELEMENTS)
         for element in self.json_file.items():
             if element[0] == element_name:
                 self.logger.info(ELEMENT_NAME_FOUND_IN_JSON + ' :[' + str(element[0]) + ']')
@@ -54,6 +51,7 @@ class JsonReader(object):
                 self.element_ids_list.append(element[1]['elementID'])
 
     def iterate_finders(self, element_name):
+        self.logger.info(ITERATING_FINDERS)
         for element in self.json_file['__FINDERS__']:
             element_finder = str(element['elementID']).replace('_ELEMENT_NAME_', element_name)
             self.logger.info(ADDING_ELEMENT_ID_FINDER + ' :[' + element_finder + ']')
@@ -72,5 +70,6 @@ class JsonReader(object):
         self.json_file = self.load_json(self._FIRST_FILE_)
         self.iterate_elements(element_name)
         self.iterate_imported_list(element_name)
+        self.logger.info(IDS_LIST + ' [' + str(self.element_ids_list) + ']')
         return self.element_ids_list
 

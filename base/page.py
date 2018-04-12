@@ -29,17 +29,18 @@ class BasePage(object):
             self.web_elements_list.append(web_element)
         except NoSuchElementException:
             self.logger.info(ELEMENT_NOT_FOUND)
-        pass
 
     def find_element(self, element_name):
         self.logger.info(LOOKING_FOR + ': [' + element_name + ']')
-
         self.element_ids_list = JsonReader().get_element_ids_list(element_name)
 
         for element_id in self.element_ids_list:
             self.get_elements(element_id)
 
+        self.logger.info(NUM_ELEMENTS + ' :[' + str(len(self.web_elements_list)) + ']')
+
         for web_element in self.web_elements_list:
+            self.logger.info(LOOKING_FOR_ACTUAL_ELEMENT)
             if web_element.is_displayed():
                 return web_element
 

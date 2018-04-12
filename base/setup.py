@@ -1,4 +1,5 @@
 import os
+import test
 import unittest
 import logging
 from selenium import webdriver
@@ -14,7 +15,7 @@ BASE_URL = 'https://www.google.com'
 
 # Tests input parameters:
 # Parameter for: test_exercise_one
-ELEMENT_NAME = 'Buscar con Google'
+ELEMENT_NAME = 'Gmail'
 # Additional parameter for: test_exercise_two (ELEMENT_ID is also used)
 ELEMENT_A = '_SEARCH_INPUT_'
 
@@ -74,4 +75,5 @@ class BaseTest(unittest.TestCase):
 
 
 if __name__ == "__main__":
-    unittest.main(failfast=True)
+    suite = unittest.TestLoader().loadTestsFromModule(test)
+    results = unittest.TextTestRunner(verbosity=2).run(suite)
