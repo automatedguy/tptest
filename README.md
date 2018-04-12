@@ -81,5 +81,5 @@ Usage:
         - ELEMENT_NAME = 'Buscar con Google'
 
     - Parameters for test_exercise_two (elementID):
-        - ELEMENT_ID_A = '//input[@value = \"Buscar con Google\"]'
-        - ELEMENT_ID_X = '//input[@value = \"Me siento con suerte \"]'
+        - ELEMENT_ID_A = '//a[text()="Publicidad"]'
+        - ELEMENT_ID_X = '//*[@id="fsr"]/a'
