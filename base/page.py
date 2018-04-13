@@ -61,6 +61,21 @@ class BasePage(object):
         self.logger.info(ELEMENT_A + POSITION + ': [' + str(element_a_position) + ']')
         self.distance_a = element_a_position['x'] * element_a_position['y']
 
+    def log_element_text(self, element):
+        if element.get_attribute("value") is not None:
+            element_text = str(element.get_attribute("value"))
+        else:
+            element_text = str(element.text)
+        self.logger.info(CLOSEST_ELEMENT + ': [' + element_text + ']')
+        self.logger.info(ELEMENT_X + POSITION + ': [' + str(self.position()) + ']')
+
+    def log_closest_element_text(self, element):
+        if element.get_attribute("value") is not None:
+            element_text = str(element.get_attribute("value"))
+        else:
+            element_text = str(element.text)
+        self.logger.info(FINAL_CLOSEST_ELEMENT + ': [' + element_text + ']')
+
     def find_position_for_elements_x(self, element_id_x):
         elements_x_list = self.driver.find_elements(By.XPATH, element_id_x)
         for element in elements_x_list:
@@ -71,8 +86,7 @@ class BasePage(object):
                 min_distance = abs(self.distance_a - distance_x) + 1
                 self.init_min_distance = False
             if abs(self.distance_a - distance_x) < min_distance:
-                self.logger.info(CLOSEST_ELEMENT + ': [' + str(element.get_attribute("value")) + ']')
-                self.logger.info(CLOSEST_ELEMENT + ': [' + str(element.text) + ']')
+                self.log_element_text(element)
                 min_distance = abs(self.distance_a - distance_x)
                 self.closest_element = element
 

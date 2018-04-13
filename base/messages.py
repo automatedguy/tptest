@@ -25,6 +25,7 @@ ELEMENT_IS_THERE = 'Element was found on the page'
 NUM_ELEMENTS = 'Number of real Elements containing same name is'
 ELEMENT_A_TEXT = 'Element A text'
 CLOSEST_ELEMENT = 'Now closest X element text is'
+FINAL_CLOSEST_ELEMENT = 'The final closest X element text is'
 
 ELEMENT_NAME_FOUND_IN_JSON = 'Element name found in Json file'
 ELEMENT_FOUND = 'Element Found'

@@ -19,7 +19,7 @@ BASE_URL = 'https://www.google.com'
 ELEMENT_NAME = 'Gmail'
 
 # Parameters for test_exercise_two (elementID)
-ELEMENT_ID_A = '//a[text()="Publicidad"]'
+ELEMENT_ID_A = '//a[text()="Condiciones"]'
 
 # Compare the 2 buttons (Search / Lucky)
 # ELEMENT_ID_X = '//input[@type = "submit"]'
@@ -28,7 +28,7 @@ ELEMENT_ID_A = '//a[text()="Publicidad"]'
 # ELEMENT_ID_X = '//*[@id="gbw"]/div/div/div[1]/div'
 
 # Compare the footer elements
-ELEMENT_ID_X = '//*[@id="fsr"]/a'
+ELEMENT_ID_X = '//*[@id="fsl"]/a'
 
 
 class BaseTest(unittest.TestCase):
