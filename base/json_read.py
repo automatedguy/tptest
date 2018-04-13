@@ -45,10 +45,10 @@ class JsonReader(object):
     # TODO: Keep this with list comprehensions
     def iterate_elements_v2(self, element_name):
         self.logger.info(ITERATING_ELEMENTS)
-        ids_list = [self.log_element(element) for element in self.json_file.items() if element[0] == element_name]
+        ids_list = [self.add_element(element) for element in self.json_file.items() if element[0] == element_name]
         self.append_final_list(ids_list)
 
-    def log_element(self, element):
+    def add_element(self, element):
         self.logger.info(ELEMENT_NAME_FOUND_IN_JSON + ' :[' + str(element[0]) + ']')
         self.logger.info(ADDING_ELEMENT_ID)
         return element[1]['elementID']
