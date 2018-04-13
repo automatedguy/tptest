@@ -16,7 +16,7 @@ BASE_URL = 'https://www.google.com'
 # Tests input parameters
 
 # Parameter for test_exercise_one (ElementName)
-ELEMENT_NAME = 'Imágenes'
+ELEMENT_NAME = 'Buscar'
 
 # Parameters for test_exercise_two (elementID)
 ELEMENT_ID_A = '//a[text()="Publicidad"]'
