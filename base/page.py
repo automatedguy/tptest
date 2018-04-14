@@ -85,7 +85,7 @@ class BasePage(object):
                 self.closest_element_x = element
 
     def calculate_distance(self, element_x):
-        self.logger.info('Calculating distance between upper left corners:')
+        self.logger.info(CALCULATING_DISTANCE)
         self.logger.info(ELEMENT_A + ': [' + self.element_a.text() + ']')
         self.logger.info(ELEMENT_X + ': [' + str(element_x.text()) + ']')
         self.logger.info(ELEMENT_X + POSITION + ': [' + str(element_x.position()) + ']')
@@ -97,7 +97,7 @@ class BasePage(object):
         y2 = element_x.position()['y']
 
         dist = sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2)
-        self.logger.info('Distance between elements is : [' + str(dist) + ']')
+        self.logger.info(DISTANCE_IS + ': [' + str(dist) + ']')
         return dist
 
     def closest_element_text(self, element):
