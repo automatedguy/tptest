@@ -39,7 +39,7 @@ class BasePage(object):
         self.web_elements_list = []
         self.element_a = None
         self.element_x = None
-        self.closest_element = None
+        self.closest_element_x = None
         self.init_min_distance = True
         self.min_distance = 0
         self.last_distance = 0
@@ -78,11 +78,11 @@ class BasePage(object):
             self.last_distance = self.calculate_distance(Element(element))
             if self.init_min_distance:
                 self.min_distance = self.last_distance
-                self.closest_element = element
+                self.closest_element_x = element
                 self.init_min_distance = False
             if self.last_distance < self.min_distance:
                 self.min_distance = self.last_distance
-                self.closest_element = element
+                self.closest_element_x = element
 
     def calculate_distance(self, element_x):
         self.logger.info('Calculating distance between upper left corners:')
@@ -110,4 +110,4 @@ class BasePage(object):
     def find_element_near_to(self, element_id_a, element_id_x):
         self.find_element_a(element_id_a)
         self.find_elements_x(element_id_x)
-        return self.closest_element
+        return self.closest_element_x

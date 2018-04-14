@@ -56,9 +56,12 @@ class JsonReader(object):
     # TODO: Keep this with list comprehensions
     def iterate_finders_v2(self, element_name):
         self.logger.info(ITERATING_FINDERS)
-        finders_list = self.json_file['__FINDERS__']
-        ids_list = [self.get_element_id(element).replace('_ELEMENT_NAME_', element_name) for element in finders_list]
-        self.append_final_list(ids_list)
+        try:
+            finders_list = self.json_file['__FINDERS__']
+            ids_list = [self.get_element_id(element).replace('_ELEMENT_NAME_', element_name) for element in finders_list]
+            self.append_final_list(ids_list)
+        except KeyError:
+            pass
 
     def get_element_id(self, element):
         element_id = str(element['elementID'])
@@ -75,16 +78,17 @@ class JsonReader(object):
 
     def populate_element_list(self, import_file, element_name):
         self.json_file = self.load_json(import_file)
-        try:
-            if self.json_file['__FINDERS__'] is not None:
-                self.iterate_finders_v2(element_name)
-        except KeyError:
-            self.iterate_elements_v2(element_name)
+        self.iterate_elements_v2(element_name)
+        self.iterate_finders_v2(element_name)
         return self.get_import_files_list()
+
+    def iterate_first_file(self, element_name):
+        self.iterate_elements_v2(element_name)
+        self.iterate_finders_v2(element_name)
 
     def get_element_ids_list(self, element_name):
         self.json_file = self.load_json(self._FIRST_FILE_)
-        self.iterate_elements_v2(element_name)
+        self.iterate_first_file(element_name)
         self.iterate_imported_list(element_name)
         self.logger.info(IDS_LIST + ' [' + str(self.ids_list) + ']')
         return self.ids_list
