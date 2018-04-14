@@ -80,7 +80,7 @@ class BasePage(object):
         slat = radians(float(self.element_a.position()['x']))
         slon = radians(float(self.element_a.position()['y']))
         elat = radians(float(element_x.position()['x']))
-        elon = radians(float(element_x.position()['x']))
+        elon = radians(float(element_x.position()['y']))
 
         dist = 6371.01 * acos(sin(slat) * sin(elat) + cos(slat) * cos(elat) * cos(slon - elon))
         return dist
@@ -94,7 +94,7 @@ class BasePage(object):
                 min_distance = last_distance
                 self.closest_element = element
                 init_min_distance = False
-            if last_distance > min_distance:
+            if last_distance < min_distance:
                 min_distance = last_distance
                 self.closest_element = element
 
