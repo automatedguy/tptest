@@ -19,7 +19,7 @@ BASE_URL = 'https://www.google.com'
 ELEMENT_NAME = 'Gmail'
 
 # Parameters for test_exercise_two (elementID)
-ELEMENT_ID_A = '//a[text()="Acerca de"]'
+ELEMENT_ID_A = '//a[text()="Preferencias"]'
 
 # Compare the 2 buttons (Search / Lucky)
 # ELEMENT_ID_X = '//input[@type = "submit"]'
