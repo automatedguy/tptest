@@ -23,4 +23,4 @@ class Exercises(BaseTest):
         self.logger.info(EXERCISE_TWO)
         element = self.base_page.find_element_near_to(self.element_id_a, self.element_id_x)
         self.assertIsNotNone(element)
-        self.base_page.log_closest_element_text(element)
+        self.base_page.closest_element_text(element)
