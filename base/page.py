@@ -89,6 +89,7 @@ class BasePage(object):
         y2 = element_x.position()['y']
 
         dist = sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2)
+        self.logger.info('Distance between elements is : [' + str(dist) + ']')
         return dist
 
     def find_elements_x(self, element_id_x):

@@ -22,10 +22,10 @@ ELEMENT_NAME = 'Gmail'
 ELEMENT_ID_A = '//a[text()="Acerca de"]'
 
 # Compare the 2 buttons (Search / Lucky)
-ELEMENT_ID_X = '//input[@type = "submit"]'
+# ELEMENT_ID_X = '//input[@type = "submit"]'
 
 # Compare the header elements
-# ELEMENT_ID_X = '//*[@id="gbw"]/div/div/div[1]/div'
+ELEMENT_ID_X = '//*[@id="gbw"]/div/div/div[1]/div'
 
 # Compare the footer elements
 # ELEMENT_ID_X = '//*[@id="fsl"]/a'
