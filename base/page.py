@@ -26,6 +26,9 @@ class Element:
             element_text = str(self.element.text)
         return element_text
 
+    def is_displayed(self):
+        return self.element.is_displayed()
+
 
 class BasePage(object):
 
@@ -43,7 +46,7 @@ class BasePage(object):
 
     def get_elements(self, element_id):
         try:
-            web_element = self.driver.find_element(By.XPATH, element_id)
+            web_element = Element(self.driver.find_element(By.XPATH, element_id))
             self.logger.info(ELEMENT_IS_THERE)
             self.web_elements_list.append(web_element)
         except NoSuchElementException:
@@ -69,12 +72,17 @@ class BasePage(object):
         self.logger.info(ELEMENT_A + SIZE + ': [' + str(self.element_a.size()) + ']')
         self.logger.info(ELEMENT_A + POSITION + ': [' + str(self.element_a.position()) + ']')
 
-    def closest_element_text(self, element):
-        if element.get_attribute("value") is not None:
-            element_text = str(element.get_attribute("value"))
-        else:
-            element_text = str(element.text)
-        self.logger.info(FINAL_CLOSEST_ELEMENT + ': [' + element_text + ']')
+    def find_elements_x(self, element_id_x):
+        elements_x_list = self.driver.find_elements(By.XPATH, element_id_x)
+        for element in elements_x_list:
+            self.last_distance = self.calculate_distance(Element(element))
+            if self.init_min_distance:
+                self.min_distance = self.last_distance
+                self.closest_element = element
+                self.init_min_distance = False
+            if self.last_distance < self.min_distance:
+                self.min_distance = self.last_distance
+                self.closest_element = element
 
     def calculate_distance(self, element_x):
         self.logger.info('Calculating distance between upper left corners:')
@@ -92,17 +100,12 @@ class BasePage(object):
         self.logger.info('Distance between elements is : [' + str(dist) + ']')
         return dist
 
-    def find_elements_x(self, element_id_x):
-        elements_x_list = self.driver.find_elements(By.XPATH, element_id_x)
-        for element in elements_x_list:
-            self.last_distance = self.calculate_distance(Element(element))
-            if self.init_min_distance:
-                self.min_distance = self.last_distance
-                self.closest_element = element
-                self.init_min_distance = False
-            if self.last_distance < self.min_distance:
-                self.min_distance = self.last_distance
-                self.closest_element = element
+    def closest_element_text(self, element):
+        if element.get_attribute("value") is not None:
+            element_text = str(element.get_attribute("value"))
+        else:
+            element_text = str(element.text)
+        self.logger.info(FINAL_CLOSEST_ELEMENT + ': [' + element_text + ']')
 
     def find_element_near_to(self, element_id_a, element_id_x):
         self.find_element_a(element_id_a)
