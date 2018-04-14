@@ -5,7 +5,7 @@ from selenium.webdriver.common.by import By
 from json_read import JsonReader
 from messages import *
 from selenium.common.exceptions import NoSuchElementException
-from math import radians, sin, cos, acos, sqrt
+from math import sqrt
 
 
 class Element:
