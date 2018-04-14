@@ -5,7 +5,7 @@ from selenium.webdriver.common.by import By
 from json_read import JsonReader
 from messages import *
 from selenium.common.exceptions import NoSuchElementException
-from math import radians, sin, cos, acos
+from math import radians, sin, cos, acos, sqrt
 
 
 class Element:
@@ -37,6 +37,9 @@ class BasePage(object):
         self.element_a = None
         self.element_x = None
         self.closest_element = None
+        self.init_min_distance = True
+        self.min_distance = 0
+        self.last_distance = 0
 
     def get_elements(self, element_id):
         try:
@@ -77,25 +80,27 @@ class BasePage(object):
         self.logger.info('Calculating distance between upper left corners:')
         self.logger.info(ELEMENT_A + ': [' + self.element_a.text() + ']')
         self.logger.info(ELEMENT_X + ': [' + str(element_x.text()) + ']')
-        slat = radians(float(self.element_a.position()['x']))
-        slon = radians(float(self.element_a.position()['y']))
-        elat = radians(float(element_x.position()['x']))
-        elon = radians(float(element_x.position()['y']))
+        self.logger.info(ELEMENT_X + POSITION + ': [' + str(element_x.position()) + ']')
 
-        dist = 6371.01 * acos(sin(slat) * sin(elat) + cos(slat) * cos(elat) * cos(slon - elon))
+        x1 = self.element_a.position()['x']
+        y1 = self.element_a.position()['y']
+
+        x2 = element_x.position()['x']
+        y2 = element_x.position()['y']
+
+        dist = sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2)
         return dist
 
     def find_elements_x(self, element_id_x):
         elements_x_list = self.driver.find_elements(By.XPATH, element_id_x)
-        init_min_distance = True
         for element in elements_x_list:
-            last_distance = self.calculate_distance(Element(element))
-            if init_min_distance:
-                min_distance = last_distance
+            self.last_distance = self.calculate_distance(Element(element))
+            if self.init_min_distance:
+                self.min_distance = self.last_distance
                 self.closest_element = element
-                init_min_distance = False
-            if last_distance < min_distance:
-                min_distance = last_distance
+                self.init_min_distance = False
+            if self.last_distance < self.min_distance:
+                self.min_distance = self.last_distance
                 self.closest_element = element
 
     def find_element_near_to(self, element_id_a, element_id_x):
